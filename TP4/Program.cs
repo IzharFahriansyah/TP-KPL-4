@@ -43,11 +43,44 @@
                     return -1;
                 }
             }
-
-            static void Main(string[] args)
+        }
+        public class DoorMachine
+        {
+            public enum Pintu
             {
+                TERBUKA, TERKUNCI
+            }
+        }
+        static void Main(string[] args)
+            {
+            Console.Write("Enter Command:  ");
+            string command = Console.ReadLine();
+            DoorMachine.Pintu pintu = DoorMachine.Pintu.TERKUNCI;
+            while (command != "Keluar Rumah")
+            {
+                switch (pintu)
+                {
+                    case DoorMachine.Pintu.TERBUKA:
+                        if (command == "KunciPintu")
+                        {
+                            pintu = DoorMachine.Pintu.TERKUNCI;
+                            Console.WriteLine("PINTU TERKUNCI");
+                        }
+                        break;
+                    case DoorMachine.Pintu.TERKUNCI:
+                        if (command == "BukaPintu")
+                        {
+                            pintu = DoorMachine.Pintu.TERBUKA;
+                            Console.WriteLine("PINTU TIDAK TERKUNCI");
+                        }
+                        break;
+                }
 
-                KodePos kodePosObj = new KodePos();
+                Console.Write("Enter Command:  ");
+                command = Console.ReadLine();
+            }
+
+            KodePos kodePosObj = new KodePos();
 
                 int kode1 = kodePosObj.getKodePos("Batununggal");
                 int kode2 = kodePosObj.getKodePos("Kujangsari");
@@ -72,7 +105,7 @@
                 Console.WriteLine("Kode pos Kebonwaru: " + kode9);
                 Console.WriteLine("Kode pos Maleer: " + kode10);
                 Console.WriteLine("Kode pos Samoja: " + kode11);
-            }
+            
         }
     }
 }
